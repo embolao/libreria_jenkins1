@@ -143,7 +143,7 @@ runTests()
 
 pipeline {
     agent any
-    
+
     stages {
         stage('CI/CD Pipeline') {
             steps {
@@ -153,7 +153,7 @@ pipeline {
             }
         }
     }
-    
+
     post {
         success {
             notifySlack("✅ Pipeline completado exitosamente")

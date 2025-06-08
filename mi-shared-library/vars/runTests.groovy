@@ -6,11 +6,3 @@ def call() {
         venv/bin/python3 -m pytest src/agente_prueba2/tests
     '''
 }
-
-
-
-
-
-
-
-
