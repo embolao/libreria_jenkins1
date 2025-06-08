@@ -1,6 +1,6 @@
 # Documentación de la Biblioteca Compartida de Jenkins
 
-Esta biblioteca compartida proporciona funciones útiles para la automatización de pipelines de CI/CD en Jenkins. A continuación se detalla su uso y las funciones disponibles.
+Esta biblioteca compartida proporciona funciones útiles para la automatización de pipelines de CI/CD en Jenkins. Incluye un conjunto completo de pruebas unitarias para garantizar la calidad del código. A continuación se detalla su uso, pruebas y las funciones disponibles.
 
 ## Tabla de Contenidos
 1. [Requisitos](#requisitos)
@@ -13,7 +13,11 @@ Esta biblioteca compartida proporciona funciones útiles para la automatización
    - [lintCode](#lintcode)
    - [notifySlack](#notifyslack)
    - [runTests](#runtests)
-5. [Ejemplo Completo](#ejemplo-completo)
+5. [Pruebas](#pruebas)
+   - [Ejecutar Pruebas](#ejecutar-pruebas)
+   - [Estructura de Pruebas](#estructura-de-pruebas)
+   - [Cobertura de Pruebas](#cobertura-de-pruebas)
+6. [Ejemplo Completo](#ejemplo-completo)
 
 ## Requisitos
 
@@ -21,6 +25,8 @@ Esta biblioteca compartida proporciona funciones útiles para la automatización
 - Pipeline plugin
 - Git plugin
 - Python 3.x (para las funciones de Python)
+- Java 11 o superior (para ejecutar las pruebas)
+- Gradle 7.0 o superior
 
 ## Configuración
 
@@ -135,6 +141,49 @@ runTests()
 - Configura el PYTHONPATH correctamente
 - Ejecuta pytest en el directorio de pruebas
 - Asume que las pruebas están en `src/agente_prueba2/tests/`
+
+## Pruebas
+
+La biblioteca incluye pruebas unitarias completas escritas con Spock Framework para garantizar la calidad y estabilidad del código.
+
+### Ejecutar Pruebas
+
+Para ejecutar todas las pruebas unitarias:
+
+```bash
+./gradlew test
+```
+
+Para generar un informe de cobertura (requiere configuración adicional de JaCoCo):
+
+```bash
+./gradlew jacocoTestReport
+```
+
+### Estructura de Pruebas
+
+Las pruebas se organizan de la siguiente manera:
+
+```
+test/
+└── groovy/
+    └── com/example/test/
+        ├── BuildAppTest.groovy      # Pruebas para buildApp
+        ├── CiStagesTest.groovy     # Pruebas para el pipeline de CI
+        ├── DeployAppTest.groovy    # Pruebas para deployApp
+        ├── LintCodeTest.groovy     # Pruebas para lintCode
+        ├── NotifySlackTest.groovy  # Pruebas para notifySlack
+        └── RunTestsTest.groovy     # Pruebas para runTests
+```
+
+### Cobertura de Pruebas
+
+Cada función de la biblioteca tiene pruebas que cubren:
+
+- Flujos de trabajo estándar
+- Casos límite
+- Manejo de errores
+- Validación de parámetros
 
 ## Ejemplo Completo
 
